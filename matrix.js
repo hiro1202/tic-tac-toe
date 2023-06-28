@@ -1,4 +1,13 @@
 class Matrix{
+
+    /*
+    Matrix class
+
+    〇Xゲームの現在状況を管理するクラス
+    クラス変数  matrixが現在のゲームの状況を表す
+    メゾッド　initialize()->None 現在のmatrixを初期化する。
+    メゾッド　markMatrixElement(x coordinate, y coordinate, mark)->None matirixにマークをつける。マークはcharの〇かXのみ  
+    */
     constructor(){
         this.sideMatrix = 3;
         this.matrix = [];
@@ -18,12 +27,23 @@ class Matrix{
     }
         //mark  matrix's element
     markMatrixElement(x, y, mark){
+        //if (mark !== "x" || mark !== "〇")return console.log("[WARNING] === Invalid input ====");
         this.matrix[x][y] = mark;
     }
 }
     
     //init matrix
-class Matrix_fucs{
+class Matrix_funcs{
+
+    /*
+    Matrix func　class
+
+    基本的にgetIsGameOverAndWinner(matirx, sideMatrix)を使用
+    matrixとsideMatrix(行列の一辺の要素数)を引数として受け取り、勝者がいるか確認する
+    返り値は{"isGameOver": bool, "winner":str or int}の仮想配列
+    勝者がいたらisGameOverにtrue,winnerに〇or×(char)を入るよう想定
+    そうでないならfalse, winnerに0(int)
+    */
 
     searchVertical(matrix, sideMatrix){
         let sampleMark,currentMark;
@@ -94,15 +114,15 @@ class Matrix_fucs{
     }
 }
 
+/*
+==== usage =====
 
 matrix = new Matrix();
-funcs = new Matrix_fucs();
+funcs = new Matrix_funcs();
 matrix.initialize();
 
 let result;
 result = funcs.getIsGameOverAndWinner(matrix.matrix, matrix.sideMatrix)
-if (result["isGameOver"] === true){
-    matrix.isGameOver = true;
-    matrix.winner = result["winner"];
-}
+console.log(result)
 console.log(matrix)
+*/
