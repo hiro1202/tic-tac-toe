@@ -103,6 +103,16 @@ class Matrix_funcs{
         else return{"isGameOver":false,"winner":0}
     }
 
+    getTurnCnt(matirx){
+        let i,j,cnt;
+        for(i=0; i<sideMatrix; i++){
+            for(j=0; j<sideMatrix ; j++){
+                if(matirx[i][j] != 0)cnt += 1;
+            } 
+        }
+        return cnt
+    }
+
     getIsGameOverAndWinner(matrix, sideMatrix){
         const searchFunc = [this.searchVertical, this.searchHorizontal, this.searchDiagonalLeftUpperToRightDown, this.searchDiagonalLeftDownToRightUpper];
         let result;
@@ -110,12 +120,17 @@ class Matrix_funcs{
             result = searchFunc[i](matrix, sideMatrix);
             if(result["isGameOver"] === true)break;
         }
+        //全てのマスを埋め終わって、ゲーム勝者がいないときは引き分け判定
+        if( this.getTurnCnt(matrix) === 9 && result["isGameOver"] === false){
+            result["isGameOver"] = true;
+            result["winner"] = "draw";
+        }
         return result
     }
 }
 
-/*
-==== usage =====
+
+//==== usage =====
 
 matrix = new Matrix();
 funcs = new Matrix_funcs();
@@ -125,4 +140,3 @@ let result;
 result = funcs.getIsGameOverAndWinner(matrix.matrix, matrix.sideMatrix)
 console.log(result)
 console.log(matrix)
-*/
