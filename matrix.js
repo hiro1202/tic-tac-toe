@@ -130,7 +130,7 @@ class Matrix_funcs{
 }
 
 
-//==== usage =====
+/*==== usage =====
 
 let matrix = new Matrix();
 const funcs = new Matrix_funcs();
@@ -140,3 +140,4 @@ let result;
 result = funcs.getIsGameOverAndWinner(matrix.matrix, matrix.sideMatrix)
 console.log(result)
 console.log(matrix)
+*/
