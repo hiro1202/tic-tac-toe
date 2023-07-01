@@ -103,8 +103,8 @@ class Matrix_funcs{
         else return{"isGameOver":false,"winner":0}
     }
 
-    getTurnCnt(matirx){
-        let i,j,cnt;
+    getTurnCnt(matirx, sideMatrix){
+        let i,j,cnt = 0;
         for(i=0; i<sideMatrix; i++){
             for(j=0; j<sideMatrix ; j++){
                 if(matirx[i][j] != 0)cnt += 1;
@@ -132,8 +132,8 @@ class Matrix_funcs{
 
 //==== usage =====
 
-matrix = new Matrix();
-funcs = new Matrix_funcs();
+let matrix = new Matrix();
+const funcs = new Matrix_funcs();
 matrix.initialize();
 
 let result;
