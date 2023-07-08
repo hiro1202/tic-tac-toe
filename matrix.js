@@ -122,7 +122,7 @@ class Matrix_funcs{
             if(result["isGameOver"] === true)break;
         }
         //全てのマスを埋め終わって、ゲーム勝者がいないときは引き分け判定
-        if( this.getTurnCnt(matrix) === 9 && result["isGameOver"] === false){
+        if( this.getTurnCnt(matrix, sideMatrix) === 9 && result["isGameOver"] === false){
             result["isGameOver"] = true;
             result["winner"] = "draw";
         }
@@ -189,17 +189,19 @@ function renderBoard() {
                 // ボードを再描画して、現在のゲームの状態を反映
                 renderBoard();
                 //ゲームが終了したか判定し結果を、変数resultに代入
-                let result = funcs.getIsGameOverAndWinner(matrix.matrix, matrix.sideMatrix);
-                //result.isGameOver が true の場合、
-                if(result.isGameOver) {
-                    //result.winner === 'draw'のとき「引き分け！」を表示
-                    //そうでない場合 '〇の勝利!' または 'Xの勝利!'を表示
-                    alert(result.winner === 'draw' ? '引き分け!' : `${result.winner}の勝利!`);
-                    //マトリクスを初期化
-                    matrix.initialize();
-                    //ボードを再描画
-                    renderBoard();
-                }
+                setTimeout(function(){
+                    let result = funcs.getIsGameOverAndWinner(matrix.matrix, matrix.sideMatrix);
+                    //result.isGameOver が true の場合、
+                    if(result["isGameOver"]) {
+                        //result.winner === 'draw'のとき「引き分け！」を表示
+                        //そうでない場合 '〇の勝利!' または 'Xの勝利!'を表示
+                        alert(result["winner"] === 'draw' ? '引き分け!' : `${result["winner"]}の勝利!`);
+                        //マトリクスを初期化
+                        matrix.initialize();
+                        //ボードを再描画
+                        renderBoard();
+                    }
+                },100);
             });
             //rowにcellを追加する
             row.appendChild(cell);
